@@ -1,6 +1,6 @@
 # IHome
 
-This is a hobby project. Below is the network flow.
+This is a hobby project. Below is the network flow of how I access IHome after I leave home. But for play locally you can just use VSCode and develop in raspbery pi directly.
 
 ```text
 Phone browser
@@ -11,10 +11,10 @@ frp server (tcp tunnel, https://github.com/fatedier/frp)
    |
    |
 Home raspberry pi (frp client setted up)
-IHome.Server
+IHome.Server (aspnet core + blazor server)
 ```
 
-The main stuff in IHome.Server, it is using [Fun.Blazor](https://github.com/slaveOftime/Fun.Blazor), aspnet core server side mode, dotnet iot.
+The main stuff is in IHome.Server, it is using [Fun.Blazor](https://github.com/slaveOftime/Fun.Blazor), aspnet core server side mode, dotnet iot.
 
 - Auth with cookie (put default user name and password under appsettings.Production.json)
 - MJPEG streamming for video
@@ -26,13 +26,16 @@ The main stuff in IHome.Server, it is using [Fun.Blazor](https://github.com/slav
 
 1. Make sure you have .NET SDK 5 and 6 installed (6 is used for build, 5 is used as target, will update to 6 soon)
 2. Make sure you have nodejs and pnpm installed (just for tailwindcss)
-3. Currently because there is a bug in Iot.Device.Binding in 1.5.0 and 2.0.0 prerelease, so I have to pull down dotnet/iot project from github and modify and build it by me self. You can check file /IHome.Server/IHome.Server.fsproj
-4. Under IHome root folder run: pnpm run watch-css
+3. Currently because there is a bug in Iot.Device.Binding in 1.5.0 and 2.0.0 prerelease, so I have to pull down dotnet/iot project from github and modify and build it by myself. You can check file /IHome.Server/IHome.Server.fsproj for the reference. When 2.0.0 is released in nuget I will update that.
+4. Under IHome root folder run: pnpm install && pnpm run watch-css
 5. Under IHome.Server run: dotnet run
+6. With VSCode you can use port forward to access https://localhost:5001 through your conputer. 
 
 # Deploy
 
-1. Add below service
+This is just some helper script to help me deploy the code to a specific location in raspberry pi after build successful in it.
+
+1. Add below service for the first time
 
 ```text
 [Unit]
