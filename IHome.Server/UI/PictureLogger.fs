@@ -9,6 +9,7 @@ open Fun.Result
 open Fun.Blazor
 open IHome.Server.Services
 
+// TODO: handle a lot of pictures with virtualize
 
 let pictureLogger =
     html.inject (fun (hook: IComponentHook, camera: CameraService) ->
