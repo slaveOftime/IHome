@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
+    <LangVersion>preview</LangVersion>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Services\GlobalStore.fs" />
+    <Compile Include="Services\GuardService.fs" />
+    <Compile Include="Services\BoardBackgroundService.fs" />
+    <Compile Include="Services\CameraService.fs" />
+    <Compile Include="Services\PictureBackgroundService.fs" />
+    <Compile Include="Services\WheelService.fs" />
+    <Compile Include="Controllers\UserController.fs" />
+    <Compile Include="Controllers\PicturesController.fs" />
+    <Compile Include="Controllers\MjpegController.fs" />
+    <Compile Include="UI\Store.fs" />
+    <Compile Include="UI\Controls.fs" />
+    <Compile Include="UI\Board.fs" />
+    <Compile Include="UI\Controller.fs" />
+    <Compile Include="UI\PictureLogger.fs" />
+    <Compile Include="UI\Camera.fs" />
+    <Compile Include="UI\Speaker.fs" />
+    <Compile Include="UI\Login.fs" />
+    <Compile Include="UI\App.fs" />
+    <Compile Include="UI\Index.fs" />
+    <Compile Include="Startup.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Bolero.Server" Version="0.17.25" />
+    <PackageReference Include="CliWrap" Version="3.3.3" />
+    <PackageReference Include="Fun.Blazor" Version="1.1.4" />
+    <PackageReference Include="Fun.Blazor.Feliz" Version="1.1.3" />
+    <PackageReference Include="Fun.Blazor.HtmlTemplate" Version="0.1.3" />
+    <PackageReference Include="Iot.Device.Bindings" Version="1.5.0" />
+    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.0" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta13" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="6.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="/home/pi/MyMedia/Media/Media.csproj" />
+  </ItemGroup>
+</Project>

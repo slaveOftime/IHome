@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "watch-css": "tailwindcss -i ./IHome.Server/wwwroot/app.css -o ./IHome.Server/wwwroot/app-generated.css --watch"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.0.1"
+  }
+}
