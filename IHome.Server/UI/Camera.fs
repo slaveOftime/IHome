@@ -6,14 +6,13 @@ open IHome.Server.Services
 
 
 let camera =
-    html.inject (fun (hook: IComponentHook) ->
-        Template.html $"""
-            <div class="shadow-lg rounded-md shadow-yellow-400/20 overflow-hidden">
-                <img src="/mjpeg" class="aspect-video w-[400px]">
-            </div>
-        """
-    )
+    Template.html $"""
+        <div class="shadow-lg rounded-md shadow-yellow-400/20 overflow-hidden">
+            <img src="/mjpeg" class="aspect-video w-[400px]">
+        </div>
+    """
 
+// TODO: Use high resolution
 
 let takePictureBtn =
     html.inject (fun (camera: CameraService) ->

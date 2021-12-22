@@ -14,6 +14,8 @@ open Microsoft.IO
 open System.Diagnostics
 open System.Buffers
 
+// TODO: use official Iot.Device.Media when it released
+// TODO: enable user to change resolution
 
 [<AutoOpen>]
 module Helper =
