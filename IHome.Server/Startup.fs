@@ -23,11 +23,13 @@ Host
                 services.AddHostedService<PictureBackgroundService>() |> ignore
                 services.AddHostedService<PictureCleanupBackgroundService>() |> ignore
                 services.AddHostedService<BoardBackgroundService>() |> ignore
+                services.AddSingleton<InfradAvoidService>() |> ignore
                 services.AddSingleton<GuardService>() |> ignore
                 services.AddSingleton<WheelService>() |> ignore
                 services.AddSingleton<CameraService>() |> ignore
             )
             .Configure(fun (application: IApplicationBuilder) ->
+                application.ApplicationServices.GetService<InfradAvoidService>() |> ignore
                 application
                     .UseStaticFiles()
                     .UseAuthentication()

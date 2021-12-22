@@ -3,6 +3,7 @@ namespace IHome.Server.Services
 open System
 open System.Device.Gpio
 open System.Device.Pwm.Drivers
+open Fun.Blazor
 
 type Direction =
     | Left
@@ -10,7 +11,7 @@ type Direction =
     | Forward
     | Back
 
-type WheelService() =
+type WheelService(globalStore: IGlobalStore) as this =
     let PWMA = 18
     let PWMB = 23
     let AIN1 = 22
@@ -34,10 +35,20 @@ type WheelService() =
         leftPWM.Start()
         rightPWM.Start()
 
+        globalStore.UseHasObstacleOnLeft().AddLazyCallback(function
+            | true -> this.Stop()
+            | false -> ()
+        ) |> ignore
+
+        globalStore.UseHasObstacleOnRight().AddLazyCallback(function
+            | true -> this.Stop()
+            | false -> ()
+        ) |> ignore
+
 
     member _.Move(direction, speed) =
         match direction with
-        | Left ->
+        | Left when globalStore.UseHasObstacleOnLeft().Value |> not ->
             leftPWM.DutyCycle <- speed
             gpio.Write(AIN1, PinValue.Low)
             gpio.Write(AIN2, PinValue.High)
@@ -46,7 +57,7 @@ type WheelService() =
             gpio.Write(BIN1, PinValue.High)
             gpio.Write(BIN2, PinValue.Low)
 
-        | Right ->
+        | Right when globalStore.UseHasObstacleOnRight().Value |> not  ->
             leftPWM.DutyCycle <- speed
             gpio.Write(AIN1, PinValue.High)
             gpio.Write(AIN2, PinValue.Low)
@@ -55,7 +66,8 @@ type WheelService() =
             gpio.Write(BIN1, PinValue.Low)
             gpio.Write(BIN2, PinValue.High)
 
-        | Forward ->
+        | Forward when globalStore.UseHasObstacleOnLeft().Value |> not
+                    && globalStore.UseHasObstacleOnRight().Value |> not ->
             leftPWM.DutyCycle <- speed
             gpio.Write(AIN1, PinValue.High)
             gpio.Write(AIN2, PinValue.Low)
@@ -72,6 +84,9 @@ type WheelService() =
             rightPWM.DutyCycle <- speed
             gpio.Write(BIN1, PinValue.Low)
             gpio.Write(BIN2, PinValue.High)
+
+        | _ ->
+            ()
 
 
     member _.Stop() =

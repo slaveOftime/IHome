@@ -103,8 +103,8 @@ let login error =
 
 let logoutBtn =
     Template.html $"""
-        <form action="/user/logout" method="post">
-            <button type="submit" class="py-2 px-6 border border-transparent text-sm font-medium rounded-md text-white bg-success-600 hover:bg-success-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-warning-500 opacity-60 hover:opacity-90">
+        <form action="/user/logout" method="post" style="margin: 0px;">
+            <button type="submit" class="py-2 px-5 border border-transparent text-sm font-medium rounded-md text-white bg-success-600 hover:bg-success-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-warning-500 opacity-60 hover:opacity-90">
                 EXIT
             </button>
         </form>

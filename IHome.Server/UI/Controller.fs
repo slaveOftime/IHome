@@ -6,7 +6,7 @@ open Fun.Blazor
 open IHome.Server.Services
 
 let controller =
-    html.inject (fun (wheel: WheelService) ->
+    html.inject (fun (wheel: WheelService, globalStore: IGlobalStore) ->
         let speed = cval 0.5
 
         let increaseSpeed () =
@@ -42,7 +42,20 @@ let controller =
                 """
             }
 
+        let obstacleDetection =
+            adaptiview () {
+                let! left = globalStore.UseHasObstacleOnLeft()
+                let! right = globalStore.UseHasObstacleOnRight()
+                Template.html $"""
+                    <div class="flex flex-row items-center my-8">
+                        <div class="w-[30px] h-[30px] mx-3 rounded-full {if left then "bg-danger-600" else "bg-success-600"}"></div>
+                        <div class="w-[30px] h-[30px] mx-3 rounded-full {if right then "bg-danger-600" else "bg-success-600"}"></div>
+                    </div>
+                """
+            }
+
         Template.html $"""
+            {obstacleDetection}
             <div class="grid grid-cols-3 grid-rows-3 rounded-full bg-neutral-300 dark:bg-neutral-700 border-success-300 w-[156px] h-[156px] shadow-lg shadow-amber-400/10 touch-none select-none">
                 <div class="row-start-2 col-start-1">{moveBtn Left}</div>
                 <div class="row-start-1 col-start-2">{moveBtn Forward}</div>
