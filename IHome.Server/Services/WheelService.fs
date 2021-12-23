@@ -36,19 +36,19 @@ type WheelService(globalStore: IGlobalStore) as this =
         rightPWM.Start()
 
         globalStore.UseHasObstacleOnLeft().AddLazyCallback(function
-            | true -> this.Stop()
-            | false -> ()
+            | true when not (globalStore.UseIgnoreObstacle().Value) -> this.Stop()
+            | _ -> ()
         ) |> ignore
 
         globalStore.UseHasObstacleOnRight().AddLazyCallback(function
-            | true -> this.Stop()
-            | false -> ()
+            | true when not (globalStore.UseIgnoreObstacle().Value) -> this.Stop()
+            | _ -> ()
         ) |> ignore
 
 
     member _.Move(direction, speed) =
         match direction with
-        | Left when globalStore.UseHasObstacleOnLeft().Value |> not ->
+        | Left when globalStore.UseIgnoreObstacle().Value || not(globalStore.UseHasObstacleOnLeft().Value) ->
             leftPWM.DutyCycle <- speed
             gpio.Write(AIN1, PinValue.Low)
             gpio.Write(AIN2, PinValue.High)
@@ -57,7 +57,7 @@ type WheelService(globalStore: IGlobalStore) as this =
             gpio.Write(BIN1, PinValue.High)
             gpio.Write(BIN2, PinValue.Low)
 
-        | Right when globalStore.UseHasObstacleOnRight().Value |> not  ->
+        | Right when globalStore.UseIgnoreObstacle().Value || not(globalStore.UseHasObstacleOnRight().Value) ->
             leftPWM.DutyCycle <- speed
             gpio.Write(AIN1, PinValue.High)
             gpio.Write(AIN2, PinValue.Low)
@@ -66,8 +66,9 @@ type WheelService(globalStore: IGlobalStore) as this =
             gpio.Write(BIN1, PinValue.Low)
             gpio.Write(BIN2, PinValue.High)
 
-        | Forward when globalStore.UseHasObstacleOnLeft().Value |> not
-                    && globalStore.UseHasObstacleOnRight().Value |> not ->
+        | Forward when globalStore.UseIgnoreObstacle().Value || (
+                    not(globalStore.UseHasObstacleOnLeft().Value)
+                    && not(globalStore.UseHasObstacleOnRight().Value)) ->
             leftPWM.DutyCycle <- speed
             gpio.Write(AIN1, PinValue.High)
             gpio.Write(AIN2, PinValue.Low)

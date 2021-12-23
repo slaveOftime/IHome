@@ -46,10 +46,12 @@ let controller =
             adaptiview () {
                 let! left = globalStore.UseHasObstacleOnLeft()
                 let! right = globalStore.UseHasObstacleOnRight()
+                let! ignoreObstacle, setIgnoreObstacle = globalStore.UseIgnoreObstacle().WithSetter()
                 Template.html $"""
                     <div class="flex flex-row items-center my-8">
-                        <div class="w-[30px] h-[30px] mx-3 rounded-full {if left then "bg-danger-600" else "bg-success-600"}"></div>
-                        <div class="w-[30px] h-[30px] mx-3 rounded-full {if right then "bg-danger-600" else "bg-success-600"}"></div>
+                        <div class="w-[30px] h-[30px] rounded-full {if ignoreObstacle then "bg-gray-400" elif left then "bg-danger-600" else "bg-success-600"}"></div>
+                        <sl-radio checked="{ignoreObstacle}" @sl-change="{fun _ -> setIgnoreObstacle (not ignoreObstacle)}" class="ml-5 mr-2"></sl-radio>
+                        <div class="w-[30px] h-[30px] rounded-full {if ignoreObstacle then "bg-gray-400" elif right then "bg-danger-600" else "bg-success-600"}"></div>
                     </div>
                 """
             }

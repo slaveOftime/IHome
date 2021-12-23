@@ -1,12 +1,18 @@
 [<AutoOpen>]
 module IHome.Server.Services.GlobalStore
 
+open System
 open System.Reflection
 open Fun.Blazor
 
 
 type StaticStore =    
-    static member Version = Assembly.GetExecutingAssembly().GetName().Version.ToString().GetHashCode()
+    static member Version =
+        #if DEBUG
+        Random().Next()
+        #else
+        Assembly.GetExecutingAssembly().GetName().Version.ToString().GetHashCode()
+        #endif
 
 
 type IGlobalStore with
@@ -15,3 +21,5 @@ type IGlobalStore with
     
     member store.UseHasObstacleOnLeft() = store.CreateCVal("has-obstacle-left", false)
     member store.UseHasObstacleOnRight() = store.CreateCVal("has-obstacle-right", false)
+
+    member store.UseIgnoreObstacle() = store.CreateCVal("ignore-obstacle", false)
