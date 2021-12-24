@@ -13,6 +13,7 @@
     <Compile Include="Services\InfradAvoidService.fs" />
     <Compile Include="Services\CameraService.fs" />
     <Compile Include="Services\PictureBackgroundService.fs" />
+    <Compile Include="Services\ServoMotorService.fs" />
     <Compile Include="Services\WheelService.fs" />
     <Compile Include="Controllers\UserController.fs" />
     <Compile Include="Controllers\PicturesController.fs" />
@@ -20,7 +21,7 @@
     <Compile Include="UI\Store.fs" />
     <Compile Include="UI\Controls.fs" />
     <Compile Include="UI\Board.fs" />
-    <Compile Include="UI\Controller.fs" />
+    <Compile Include="UI\WheelController.fs" />
     <Compile Include="UI\PictureLogger.fs" />
     <Compile Include="UI\Camera.fs" />
     <Compile Include="UI\Speaker.fs" />

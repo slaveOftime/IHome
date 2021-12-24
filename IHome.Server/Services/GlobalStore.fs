@@ -23,3 +23,6 @@ type IGlobalStore with
     member store.UseHasObstacleOnRight() = store.CreateCVal("has-obstacle-right", false)
 
     member store.UseIgnoreObstacle() = store.CreateCVal("ignore-obstacle", false)
+
+    member store.UseTopMotorAngle() = store.CreateCVal("top-motor-angle", 90)
+    member store.UseBottomMotorAngle() = store.CreateCVal("bottom-motor-angle", 110)

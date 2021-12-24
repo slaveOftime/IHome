@@ -21,13 +21,13 @@ type InfradAvoidService(store: IGlobalStore) =
         let rightSubject = Subject<bool>.broadcast
 
         leftSubject
-        |> Observable.throttle (TimeSpan.FromMilliseconds 50)
+        |> Observable.throttle (TimeSpan.FromMilliseconds 10)
         |> Observable.add (fun _ ->
             store.UseHasObstacleOnLeft().Publish(gpio.Read sensorLeft = PinValue.Low)
         )
 
         rightSubject
-        |> Observable.throttle (TimeSpan.FromMilliseconds 50)
+        |> Observable.throttle (TimeSpan.FromMilliseconds 10)
         |> Observable.add (fun _ ->
             store.UseHasObstacleOnRight().Publish(gpio.Read sensorRight = PinValue.Low)
         )

@@ -5,7 +5,7 @@ open FSharp.Data.Adaptive
 open Fun.Blazor
 open IHome.Server.Services
 
-let controller =
+let wheelController =
     html.inject (fun (wheel: WheelService, globalStore: IGlobalStore) ->
         let speed = cval 0.5
 

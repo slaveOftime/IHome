@@ -18,7 +18,7 @@ let app =
                             {board}
                             {logoutBtn}
                         </div>
-                        {controller}
+                        {wheelController}
                     </div>
                     <div class="row-start-1 col-start-1 sm:row-start-1 sm:col-start-2 md:row-start-1 md:col-start-2 flex flex-col justify-center items-center">
                         {camera}
