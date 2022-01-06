@@ -7,14 +7,13 @@ open System.Threading
 open System.Threading.Channels
 open System.Collections.Concurrent
 open Microsoft.Extensions.Logging
-open Iot.Device.MyMedia
+open Iot.Device.Media
 open SixLabors.ImageSharp
 open SixLabors.ImageSharp.PixelFormats
 open Microsoft.IO
 open System.Diagnostics
 open System.Buffers
 
-// TODO: use official Iot.Device.Media when it released
 // TODO: enable user to change resolution
 
 [<AutoOpen>]

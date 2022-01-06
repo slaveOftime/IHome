@@ -4,6 +4,8 @@ module IHome.Server.UI.Controller
 open FSharp.Data.Adaptive
 open Fun.Blazor
 open IHome.Server.Services
+open IHome.Server.UI.Shoelace
+
 
 let wheelController =
     html.inject (fun (wheel: WheelService, globalStore: IGlobalStore) ->
@@ -50,7 +52,7 @@ let wheelController =
                 Template.html $"""
                     <div class="flex flex-row items-center my-8">
                         <div class="w-[30px] h-[30px] rounded-full {if ignoreObstacle then "bg-gray-400" elif left then "bg-danger-600" else "bg-success-600"}"></div>
-                        <sl-radio checked="{ignoreObstacle}" @sl-change="{fun _ -> setIgnoreObstacle (not ignoreObstacle)}" class="ml-5 mr-2"></sl-radio>
+                        <sl-radio checked="{ignoreObstacle}" onsl-change="{callback (fun (_: SlChangeEventArgs) -> setIgnoreObstacle (not ignoreObstacle))}" class="ml-5 mr-2"></sl-radio>
                         <div class="w-[30px] h-[30px] rounded-full {if ignoreObstacle then "bg-gray-400" elif right then "bg-danger-600" else "bg-success-600"}"></div>
                     </div>
                 """
