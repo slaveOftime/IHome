@@ -8,9 +8,11 @@ open IHome.Server.UI.Shoelace
 
 let camera =
     html.inject (fun (globalStore: IGlobalStore) ->
-        let handleSlChangeEvent fn (e: SlChangeEventArgs) =
-            try e.Value |> string |> int |> fn
-            with _ -> ()
+        let handleSlChangeEvent fn =
+            callback (fun (e: SlChangeEventArgs) ->
+                try e.Value |> string |> int |> fn
+                with _ -> ()
+            )
 
         let verticalSlider =
             adaptiview () {
@@ -19,7 +21,7 @@ let camera =
                     <sl-range
                         min="50" max="180"
                         value="{topMotorAngle}"
-                        onsl-change="{callback (handleSlChangeEvent setTopMotorAngle)}"
+                        onsl-change="{handleSlChangeEvent setTopMotorAngle}"
                         help-text="look up or down"
                     ></sl-range>
                 """
@@ -32,7 +34,7 @@ let camera =
                     <sl-range
                         min="0" max="180"
                         value="{bottomMotorAngle}"
-                        onsl-change="{callback (handleSlChangeEvent setBottomMotorAngle)}"
+                        onsl-change="{handleSlChangeEvent setBottomMotorAngle}"
                         help-text="look left or right"
                     ></sl-range>
                 """
