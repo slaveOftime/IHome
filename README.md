@@ -19,17 +19,17 @@ The main stuff is in IHome.Server, it is using [Fun.Blazor](https://github.com/s
 - Auth with cookie (put default user name and password under appsettings.Production.json)
 - MJPEG streamming for video
 - Wheel control
+- Servo control for camera angle
 - CPU temperature monitor
 
 
 # How to build
 
-1. Make sure you have .NET SDK 5 and 6 installed (6 is used for build, 5 is used as target, will update to 6 soon)
+1. Make sure you have .NET SDK 6 installed
 2. Make sure you have nodejs and pnpm installed (just for tailwindcss)
-3. Currently because there is a bug in Iot.Device.Binding in 1.5.0 and 2.0.0 prerelease, so I have to pull down dotnet/iot project from github and modify and build it by myself. You can check file /IHome.Server/IHome.Server.fsproj for the reference. When 2.0.0 is released in nuget I will update that.
-4. Under IHome root folder run: pnpm install && pnpm run watch-css
-5. Under IHome.Server run: dotnet run
-6. With VSCode you can use port forward to access https://localhost:5001 through your conputer. 
+3. Under IHome root folder run: pnpm install && pnpm run watch-css
+4. Under IHome.Server run: dotnet run
+5. With VSCode you can use port forward to access https://localhost:5001 through your conputer. 
 
 # Deploy
 
