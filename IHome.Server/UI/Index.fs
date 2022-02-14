@@ -38,7 +38,7 @@ type Index() =
     {rootComp<Index> ctx RenderMode.ServerPrerendered}
     <script src="_framework/blazor.server.js"></script>
     <script type="module" src="https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.62/dist/shoelace.js"></script>
-    <script src="shoelace.js"></script>
+    {Shoelace.registerEvents}
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
         navigator.serviceWorker.register('service-worker.js');

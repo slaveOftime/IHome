@@ -3,15 +3,13 @@ module IHome.Server.UI.Camera
 
 open Fun.Blazor
 open IHome.Server.Services
-open IHome.Server.UI.Shoelace
 
 
 let camera =
     html.inject (fun (globalStore: IGlobalStore) ->
         let handleSlChangeEvent fn =
             callback (fun (e: SlChangeEventArgs) ->
-                try e.Value |> string |> int |> fn
-                with _ -> ()
+                e.Value |> string |> int |> fn
             )
 
         let verticalSlider =

@@ -55,12 +55,12 @@ let login error =
                         <div class="rounded-md shadow-sm -space-y-px">
                             <div>
                                 <label for="username" class="sr-only">Name</label>
-                                <input value="{name}" oninput="{fun (e: ChangeEventArgs) -> e.Value |> string |> setName}" id="username" name="name" type="text" autocomplete="name" placeholder="Name" required autofocus
+                                <input value="{name}" oninput="{callback(fun (e: ChangeEventArgs) -> e.Value |> string |> setName)}" id="username" name="name" type="text" autocomplete="name" placeholder="Name" required autofocus
                                     class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-800 rounded-t-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10">
                             </div>
                             <div>
                                 <label for="password" class="sr-only">Password</label>
-                                <input value="{pwd}" oninput="{fun (e: ChangeEventArgs) -> e.Value |> string |> setPwd}" id="password" name="password" type="password" autocomplete="current-password" placeholder="Password" required
+                                <input value="{pwd}" oninput="{callback(fun (e: ChangeEventArgs) -> e.Value |> string |> setPwd)}" id="password" name="password" type="password" autocomplete="current-password" placeholder="Password" required
                                     class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-800 rounded-b-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10">
                             </div>
                         </div>
