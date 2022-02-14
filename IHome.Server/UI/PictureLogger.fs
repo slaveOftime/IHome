@@ -73,10 +73,10 @@ let pictureLoggerBtn =
                             <sl-button href="/pictures-logger">Pictures</sl-button>
                             <div class="flex flex-row items-center pr-15">
                                 {
-                                    html.fragment [
+                                    fragment {
                                         for p in ps do
                                             imageCircle $"/pictures/{p.Name}"
-                                    ]
+                                    }
                                 }
                             </div>
                         </div>

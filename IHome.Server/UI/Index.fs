@@ -1,6 +1,8 @@
 namespace IHome.Server.UI
 
 open Microsoft.Extensions.Configuration
+open Microsoft.AspNetCore.Components
+open Microsoft.AspNetCore.Mvc.Rendering
 open Fun.Blazor
 open IHome.Server.Services
 
@@ -10,7 +12,7 @@ type Index() =
 
     override _.Render() = app
 
-    static member page =
+    static member page ctx =
         html.inject (fun (config: IConfiguration) ->
             let title = config.GetValue("Home:Title")
             let v = StaticStore.Version
@@ -33,7 +35,7 @@ type Index() =
     <link rel="apple-touch-icon?v={v}" sizes="192x192" href="icon-192.png" />
 </head>
 <body class="h-full w-full overflow-hidden">
-    {Bolero.Server.Html.rootComp<Index>}
+    {rootComp<Index> ctx RenderMode.ServerPrerendered}
     <script src="_framework/blazor.server.js"></script>
     <script type="module" src="https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.62/dist/shoelace.js"></script>
     <script src="shoelace.js"></script>

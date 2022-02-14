@@ -17,7 +17,7 @@ services.AddHttpContextAccessor() |> ignore
 services.AddMemoryCache() |> ignore
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie() |> ignore
 services.AddAuthorization() |> ignore
-services.AddServerSideBlazor().Services.AddBoleroHost(true, true).AddFunBlazor() |> ignore
+services.AddServerSideBlazor().Services.AddFunBlazorServer() |> ignore
 services.AddHostedService<PictureBackgroundService>() |> ignore
 services.AddHostedService<PictureCleanupBackgroundService>() |> ignore
 services.AddHostedService<BoardBackgroundService>() |> ignore
@@ -39,6 +39,6 @@ application.UseAuthentication().UseAuthorization() |> ignore
 
 application.MapControllers() |> ignore
 application.MapBlazorHub() |> ignore
-application.MapFallbackToBolero(Index.page) |> ignore
+application.MapFunBlazor(Index.page) |> ignore
 
 application.Run()

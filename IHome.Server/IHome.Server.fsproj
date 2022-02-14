@@ -32,12 +32,11 @@
   <ItemGroup>
     <PackageReference Include="Bolero.Server" Version="0.18.16" />
     <PackageReference Include="CliWrap" Version="3.3.3" />
-    <PackageReference Include="Fun.Blazor" Version="1.2.0" />
-    <PackageReference Include="Fun.Blazor.Feliz" Version="1.2.0" />
-    <PackageReference Include="Fun.Blazor.HtmlTemplate" Version="0.2.2" />
-    <PackageReference Include="Iot.Device.Bindings" Version="2.0.0-prerelease.21622.2" />
+    <PackageReference Include="Fun.Blazor.Server" Version="2.0.0-beta*" />
+    <PackageReference Include="Fun.Blazor.HtmlTemplate" Version="2.0.0-beta*" />
+    <PackageReference Include="Iot.Device.Bindings" Version="2.0.0" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.0" />
-    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta13" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta14" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="FSharp.Core" Version="6.0.1" />
