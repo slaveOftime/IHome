@@ -3,7 +3,6 @@ open Microsoft.AspNetCore.Builder
 open Microsoft.Extensions.Hosting
 open Microsoft.AspNetCore.Authentication.Cookies
 open Microsoft.Extensions.DependencyInjection
-open Bolero.Server
 open IHome.Server.Services
 open IHome.Server.UI
 

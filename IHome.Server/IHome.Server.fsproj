@@ -18,7 +18,6 @@
     <Compile Include="Controllers\PicturesController.fs" />
     <Compile Include="Controllers\MjpegController.fs" />
     <Compile Include="UI\Shoelace.fs" />
-    <Compile Include="UI\Store.fs" />
     <Compile Include="UI\Board.fs" />
     <Compile Include="UI\WheelController.fs" />
     <Compile Include="UI\PictureLogger.fs" />
@@ -30,10 +29,9 @@
     <Compile Include="Startup.fs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Bolero.Server" Version="0.18.16" />
     <PackageReference Include="CliWrap" Version="3.3.3" />
-    <PackageReference Include="Fun.Blazor.Server" Version="2.0.0-beta*" />
-    <PackageReference Include="Fun.Blazor.HtmlTemplate" Version="2.0.0-beta*" />
+    <PackageReference Include="Fun.Blazor.Server" Version="2.0.0-beta011" />
+    <PackageReference Include="Fun.Blazor.HtmlTemplate" Version="2.0.0-beta011" />
     <PackageReference Include="Iot.Device.Bindings" Version="2.0.0" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.0" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta13" />
