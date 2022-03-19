@@ -29,10 +29,11 @@
     <Compile Include="Startup.fs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CliWrap" Version="3.3.3" />
-    <PackageReference Include="Fun.Blazor.Server" Version="2.0.0-beta011" />
-    <PackageReference Include="Fun.Blazor.HtmlTemplate" Version="2.0.0-beta011" />
-    <PackageReference Include="Iot.Device.Bindings" Version="2.0.0" />
+    <PackageReference Include="CliWrap" Version="3.4.2" />
+    <PackageReference Include="Fun.Blazor.Server" Version="2.0.0-beta031" />
+    <PackageReference Include="Fun.Blazor.HtmlTemplate" Version="2.0.0-beta031" />
+    <PackageReference Include="Fun.Blazor.HotReload" Version="2.0.0-beta031" />
+    <PackageReference Include="Iot.Device.Bindings" Version="2.1.0" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.0" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta13" />
   </ItemGroup>

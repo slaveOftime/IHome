@@ -10,7 +10,12 @@ open IHome.Server.Services
 type Index() =
     inherit FunBlazorComponent()
 
-    override _.Render() = app
+    override _.Render() =
+        #if DEBUG
+        html.hotReloadComp(app, "IHome.Server.UI.App.app")
+        #else
+        app
+        #endif
 
     static member page ctx =
         html.inject (fun (config: IConfiguration) ->
@@ -39,6 +44,7 @@ type Index() =
     <script src="_framework/blazor.server.js"></script>
     <script type="module" src="https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.62/dist/shoelace.js"></script>
     {Shoelace.registerEvents}
+    {html.hotReloadJSInterop}
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
         navigator.serviceWorker.register('service-worker.js');

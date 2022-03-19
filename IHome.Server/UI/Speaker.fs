@@ -8,8 +8,7 @@ open Fun.Blazor
 let speaker =
     html.inject (fun () ->
 
-        Template.html
-            $"""
+        Template.html $"""
             <div>speaker</div>
         """
     )

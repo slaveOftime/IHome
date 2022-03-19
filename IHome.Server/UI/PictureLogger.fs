@@ -64,7 +64,7 @@ let pictureLoggerBtn =
             adaptiview () {
                 match! pictures with
                 | DeferredState.Loading ->
-                    Template.html $"""
+                    Static.html """
                         <sl-progress-bar indeterminate style="width: 120px;"></sl-progress-bar>
                     """
                 | DeferredState.Loaded ps ->
@@ -73,16 +73,16 @@ let pictureLoggerBtn =
                             <sl-button href="/pictures-logger">Pictures</sl-button>
                             <div class="flex flex-row items-center pr-15">
                                 {
-                                    fragment {
+                                    html.fragment [
                                         for p in ps do
                                             imageCircle $"/pictures/{p.Name}"
-                                    }
+                                    ]
                                 }
                             </div>
                         </div>
                     """
                 | _ ->
-                    Template.html $"<div>...</div"
+                    Static.html "<div>...</div"
             }
 
         Template.html $"""
