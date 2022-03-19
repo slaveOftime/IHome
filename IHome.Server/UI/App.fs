@@ -2,15 +2,12 @@
 [<AutoOpen>]
 module IHome.Server.UI.App
 
-open Microsoft.AspNetCore.Http
 open Fun.Blazor
 open Fun.Blazor.Router
 
 
 let app =
-    html.inject (fun (ctx: IHttpContextAccessor) ->
-        let ctx = ctx.HttpContext
-
+    html.inject (fun () ->
         let main =
             Template.html $"""
                 <div class="p-5 h-full w-full grid justify-items-center grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-1 md:grid-cols-2 md:grid-rows-1 overflow-hidden">
@@ -32,9 +29,8 @@ let app =
                 let error = qs |> Map.tryFind "error" |> Option.map string
                 login error
             )
-            if ctx.User.Identity.IsAuthenticated then
-                routeCi "/pictures-logger" pictureLogger
-                routeCi "/" main
+            routeCi "/pictures-logger" pictureLogger
+            routeCi "/" main
             routeAny (login None)
         ]
     )

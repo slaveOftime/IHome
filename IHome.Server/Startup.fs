@@ -38,6 +38,6 @@ application.UseAuthentication().UseAuthorization() |> ignore
 
 application.MapControllers() |> ignore
 application.MapBlazorHub() |> ignore
-application.MapFunBlazor(Index.page) |> ignore
+application.MapFunBlazor(IndexPage.page) |> ignore
 
 application.Run()

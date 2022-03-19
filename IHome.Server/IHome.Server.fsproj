@@ -18,6 +18,7 @@
     <Compile Include="Controllers\PicturesController.fs" />
     <Compile Include="Controllers\MjpegController.fs" />
     <Compile Include="UI\Shoelace.fs" />
+    <Compile Include="UI\Hooks.fs" />
     <Compile Include="UI\Board.fs" />
     <Compile Include="UI\WheelController.fs" />
     <Compile Include="UI\PictureLogger.fs" />

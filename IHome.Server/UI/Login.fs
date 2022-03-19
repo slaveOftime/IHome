@@ -1,3 +1,4 @@
+// hot-reload
 [<AutoOpen>]
 module IHome.Server.UI.Login
 
@@ -8,27 +9,6 @@ open Fun.Blazor
 open Fun.Blazor.Validators
 
 
-type IComponentHook with
-    member hook.UseLoginForm () =
-        hook
-            .UseAdaptiveForm<_, _>({| Name = ""; Password = "" |})
-            .AddValidators(
-                (fun x -> x.Name),
-                true,
-                [
-                    minLength 2 (sprintf "Name leng cannot be shorter than %d")
-                    maxLength 20 (sprintf "Name leng cannot be longer than %d")
-                ]
-            )
-            .AddValidators(
-                (fun x -> x.Password),
-                true,
-                [
-                    required "Password is required"
-                ]
-            )
-
-
 let login error =
     html.inject (fun (hook: IComponentHook, config: IConfiguration) ->
         let knocked = cval false
@@ -37,7 +17,7 @@ let login error =
 
         let errorsView es =
             Template.html $"""
-                <div class="rounded-md p-2 mt-5 text-danger-600/50 text-xs">
+                <div class="rounded-md p-2 mt-5 text-danger-500/80 text-xs">
                     {es |> String.concat ", "}
                 </div>
             """
@@ -78,10 +58,10 @@ let login error =
             Template.html $"""
                 <div
                     ondblclick="{fun _ -> knocked.Publish true}"
-                    class="p-8 rounded-lg shadow-lg bg-gradient-to-br from-primary-100/10 to-primary-400/10 mx-20 sm:mx-5 md:mx-5 cursor-pointer select-none"
+                    class="p-8 rounded-lg shadow-lg bg-gradient-to-br from-primary-100/10 to-primary-400/10 mx-20 sm:mx-5 md:mx-5 cursor-pointer select-none min-w-[360px]"
                 >
-                    <p class="text-primary-500 font-extrabold text-3xl">Welcome to</p>
-                    <p class="text-success-600 text-5xl opacity-70">{title}</p>
+                    <p class="text-primary-500 font-extrabold text-2xl">Welcome to</p>
+                    <p class="text-success-600 text-4xl opacity-70 mt-1">{title}</p>
                     <p class="text-gray-400/40 mt-5 animate-bounce">Knock knock ...</p>
                     {match error with
                      | Some e -> errorsView [e]
@@ -104,8 +84,11 @@ let login error =
 let logoutBtn =
     Template.html $"""
         <form action="/user/logout" method="post" style="margin: 0px;">
-            <button type="submit" class="py-2 px-5 border border-transparent text-sm font-medium rounded-md text-white bg-success-600 hover:bg-success-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-warning-500 opacity-60 hover:opacity-90">
+            <button type="submit" class="py-2 px-5 border border-transparent text-sm font-medium rounded-md text-white bg-success-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-warning-500 opacity-60 hover:opacity-90">
                 EXIT
             </button>
         </form>
     """
+
+
+let loginPage = login None

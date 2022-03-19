@@ -30,6 +30,8 @@ The main stuff is in IHome.Server, it is using [Fun.Blazor](https://github.com/s
 3. Under IHome root folder run: pnpm install && pnpm run watch-css
 4. Under IHome.Server run: dotnet run
 5. With VSCode you can use port forward to access https://localhost:5001 through your conputer. 
+6. Under IHome root folder run: dotnet fun-blazor watch ./IHome.Server/IHome.Server.fsproj
+
 
 # Deploy
 

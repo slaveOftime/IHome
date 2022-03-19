@@ -1,13 +1,25 @@
 namespace IHome.Server.UI
 
 open Microsoft.Extensions.Configuration
+open Microsoft.AspNetCore.Http
 open Microsoft.AspNetCore.Components
 open Microsoft.AspNetCore.Mvc.Rendering
 open Fun.Blazor
 open IHome.Server.Services
 
 
-type Index() =
+type LoginPage() =
+    inherit FunBlazorComponent()
+
+    override _.Render() = 
+        #if DEBUG
+        html.hotReloadComp(loginPage, "IHome.Server.UI.Login.loginPage")
+        #else
+        loginPage
+        #endif
+
+
+type IndexPage() =
     inherit FunBlazorComponent()
 
     override _.Render() =
@@ -17,10 +29,16 @@ type Index() =
         app
         #endif
 
-    static member page ctx =
+    static member page (ctx: HttpContext) =
         html.inject (fun (config: IConfiguration) ->
             let title = config.GetValue("Home:Title")
             let v = StaticStore.Version
+
+            let root =
+                if ctx.User <> null && ctx.User.Identity.IsAuthenticated then
+                    rootComp<IndexPage> ctx RenderMode.ServerPrerendered
+                else
+                    rootComp<LoginPage> ctx RenderMode.ServerPrerendered
 
             Template.html $"""
 <!DOCTYPE html>
@@ -40,11 +58,17 @@ type Index() =
     <link rel="apple-touch-icon?v={v}" sizes="192x192" href="icon-192.png" />
 </head>
 <body class="h-full w-full overflow-hidden">
-    {rootComp<Index> ctx RenderMode.ServerPrerendered}
+    {root}
     <script src="_framework/blazor.server.js"></script>
     <script type="module" src="https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.62/dist/shoelace.js"></script>
     {Shoelace.registerEvents}
-    {html.hotReloadJSInterop}
+    {
+        #if DEBUG
+        html.hotReloadJSInterop
+        #else
+        html.none
+        #endif
+    }
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
         navigator.serviceWorker.register('service-worker.js');
